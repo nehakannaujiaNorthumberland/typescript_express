@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type='text/javascript' src='client.js'></script>
+  <style>
+    .strike {
+      text-decoration: line-through;
+    }
+
+  </style>
+  <title>Todo</title>
+</head>
+<body>
+  <h1>Todo list:</h1>
+  <form action='/add' method='post'>
+    <input type="text" id='des' name='des' />
+    <button type='submit'>submit</button>
+  </form>
+
+  <ul id="todo-list">
+
+  {% for todo in data %}
+   <li {% if todo.isComplete %} class='strike' {% endif %} data-item-id={{todo.id}}>{{ todo.desc }} <input data-item-id={{todo.id}} type='checkbox' onchange='onClick({{todo.id}});'' name="isComplete" {% if todo.isComplete %} checked  {% endif %} /> <button onclick='deleteItem();' data-item-id={{todo.id}}>x</button></li>
+  {% endfor %}
+
+  </ul>
+
+  
+</body>
+</html>
